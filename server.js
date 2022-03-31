@@ -30,7 +30,6 @@ io.on('connection', socket => {
     })
 })
 https.createServer(credentials, function(req, res) {
-    res.writeHead(200);
-    res.end('Hello world\n');
+
 
 }).listen(9000)
