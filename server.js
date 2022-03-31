@@ -4,8 +4,8 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 const fs = require('fs');
-const privateKey = fs.readFileSync('./privatekey.pem', 'utf-8');
-const certificate = fs.readFileSync('./certificate.pem', 'utf-8');
+const privateKey = fs.readFileSync('./key.pem');
+const certificate = fs.readFileSync('./cert.pem');
 const credentials = { key: privateKey, cert: certificate };
 const https = require('https');
 app.set('view engine', 'ejs')
@@ -29,8 +29,8 @@ io.on('connection', socket => {
         })
     })
 })
+https.createServer(credentials, function(req, res) {
+    res.writeHead(200);
+    res.end('Hello world');
 
-const httpsServer = https.createServer(
-    credentials,
-    app);
-httpsServer.listen(3000);
+}).listen(3000)
