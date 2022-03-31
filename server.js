@@ -3,7 +3,7 @@ const app = express()
 const server = require('https').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
-
+const fs = require('fs');
 const privateKey = fs.readFileSync('/etc/letsencrypt/trb.pem', 'utf-8');
 const certificate = fs.readFileSync('/etc/letsencrypt/trb.pem', 'utf-8');
 const credentials = { key: privateKey, cert: certificate };
