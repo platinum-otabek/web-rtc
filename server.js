@@ -7,7 +7,7 @@ const fs = require('fs');
 const privateKey = fs.readFileSync('/etc/letsencrypt/trb.pem', 'utf-8');
 const certificate = fs.readFileSync('/etc/letsencrypt/trb.pem', 'utf-8');
 const credentials = { key: privateKey, cert: certificate };
-
+const https = require('https');
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
